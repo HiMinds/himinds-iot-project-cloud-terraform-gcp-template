@@ -1,0 +1,1 @@
+# himinds-iot-project-cloud-terraform-gcp-template
