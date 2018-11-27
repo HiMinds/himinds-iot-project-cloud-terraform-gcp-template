@@ -15,20 +15,31 @@ To run this you need:
 To install Ansible you will find help on the [[official Ansible page][https://docs.ansible.com/installation_guide?intro_installation.html]]. 
 
 To check your installation use:
-$ ansible --version # 
 
+```
+$ ansible --version # 
+```
 To execute it on your computer you should run:
+
+```
 $ ansible-playbook -K worknode.yml
+```
 
 Info: run it with a sudoer or root user because it will ask for the sudo password. In case you mistype your password Ansible will keep triing to log on. Based on your configuration it might lock your user.
 
 ## Set up a Google SDK server -- Linux guide
 
 To check is the Google Cloud SDK properly installed run:
-```$ gcloud --version
+
+```
+$ gcloud --version
+```
 
 For this step you need a Google Cloud Platform account. To connect your command line interface to your account. Use the command line:
-```$  gcloud init
+
+```
+$  gcloud init
+```
 
 From this point just follow the instructions on the screen. For more information you can check out [[Google's SDK Linux Kickstart][https://cloud.google.com/sdk/docs/quickstart-linux]] page.
 So far that is all that you have to do because Terraform will interact with the Google SDK. It will configure it up with the default settings. More about this in the next section.
@@ -39,7 +50,10 @@ There is an extended documentum released by Google how to make the [[Google Clou
 There is another Ansible playbook which can be run to set up the a Terraform provisioning project. Before you use it you have to log onto your Google Cloud Platform account but at this steps you should have done it.
 
 Before you run it install the dependency Python modules:
-```pip install -r requirements.txt 
+
+```
+pip install -r requirements.txt 
+```
 
 The Ansible playbook will:
 * create a project for Terraform
@@ -50,7 +64,9 @@ The Ansible playbook will:
 
 After running the Ansible playbook:
 
-```ansible-playbook -K worknode_gcloud.yml
+```
+ansible-playbook -K worknode_gcloud.yml
+```
 
 This steps can be added to the worknode.yml however it is not a requirement for Terraform or Gcloud. It is a requirement for using Ansible to provision with Terraform.
 
@@ -58,25 +74,35 @@ This steps can be added to the worknode.yml however it is not a requirement for 
 
 To check is Terraform properly installed on your computer you should run:
 
-```$ terraform --version
-
+```
+$ terraform --version
+```
 
 Terraform will provision a new project in your Google Cloud Platform account with the default variable names defined in the environment.tfvars file.
 
 To prepare Terraform for the installation (to order it to download the right modules and plugins) run:
 
+```
 $ terraform init
+```
 
 Before deploying Terraform creates a deployment plan. This is the step where it checks the configuration file's syntax and create a readable output what will be the results after the configuration:
+
+```
 $ terraform plan
+```
 
 Info: The plan can be long and verbose. You might you want to save it in a file. For this run instead:
 
+```
 $ terraform plan -out=tfplan
+```
 
 If you are satisfied with the result run:
 
+```
 $ terraform apply -var-file=environment.tfvars
+```
 
 If everything goes according to the plans you will have:
 
